@@ -13,13 +13,7 @@ function App() {
     date: new Date(),
   })
 
-  const [timeArray, setTimeArray] = useState([localTime,
-    {
-      name: 'Лондон',
-      zone: 100,
-      date: new Date(new Date()-(100*60*1000)),
-    }
-  ])
+  const [timeArray, setTimeArray] = useState([localTime])
 
   const refreshArrayElement = (el) => {
     return {
@@ -53,17 +47,24 @@ function App() {
     setTimeArray(newArray)
   }
 
+  const deleteClock = (id) => {
+    let a1 = timeArray.slice(0, id)
+    let a2 = timeArray.slice(id+1, timeArray.length)
+    let newArray = a1.concat(a2)
+    setTimeArray(newArray)
+  }
+
   useEffect(() => {
     const timerId = setInterval(refreshClock, 1000);
     return () => {
       clearInterval(timerId);
     }
-  }, [])
+  })
 
   return (
     <div className="App">
       <AddTime addTime={addTime} name={name} zone={zone} setName={setName} setZone={setZone} />
-      <ShowTime timeArray={timeArray} localTime={localTime} />
+      <ShowTime timeArray={timeArray} deleteClock={deleteClock} />
     </div>
   );
 }

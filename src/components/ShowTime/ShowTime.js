@@ -7,6 +7,7 @@ function ShowTime(props) {
                 <div key={idx}>
                     <p>{t.name}</p>
                     <p>{t.date.getHours() + ':' + t.date.getMinutes() + ':' + t.date.getSeconds()}</p>
+                    <button onClick={() => props.deleteClock(idx)}>x</button>
                 </div>
             ))}
         </div>
@@ -15,6 +16,7 @@ function ShowTime(props) {
 
 ShowTime.propTypes = {
     timeArray: propTypes.array,
+    deleteClock: propTypes.func
 }
 
 export default ShowTime;

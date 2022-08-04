@@ -6,7 +6,7 @@ function AddTime(props) {
         <p>Название</p>
         <input onChange={evt => props.setName(evt.target.value)}></input>
         <p>Временная зона</p>
-        <input onChange={evt => props.setZone(evt.target.value-0)} type='number' step={0.1}></input>
+        <input onChange={evt => props.setZone(evt.target.value-0)} type='number' step={0.5}></input>
         <button onClick={() => {props.addTime(props.name, props.zone)}}>Добавить</button>
     </div>
   );
